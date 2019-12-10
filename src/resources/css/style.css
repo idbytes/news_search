@@ -1,0 +1,48 @@
+.main-div {
+    background-color: #ccffcc;
+    height: 100vh;
+    padding: 3% 3% 0% 3%;
+}
+.container-div{
+    background-color: #ffffff;
+    height: 80%;
+    padding: 2% 2% 2% 2%;
+    border: 1px solid #a3c2c2;
+}
+h1{
+    font-family:georgia,garamond,serif;
+    text-align: center;
+    color: #262626;
+}
+.timer{
+    text-align: right;
+}
+input[type=text]{
+    width: 94%;
+    height: 35px;
+    display: inline-block;
+    border: 1px solid #a3c2c2;
+    box-sizing: border-box;
+}
+input[type=button]{
+    width: 5.5%;
+    height: 35px;
+    background-color: #59C03C;
+    outline: none;
+    cursor: pointer;
+}
+input[type=button]:active {
+    border-style: outset;
+}
+@media only screen and (min-width: 960px) {
+    /* styles for browsers larger than 960px; */
+}
+
+@media only screen and (max-device-width: 480px) {
+    /* styles for mobile browsers smaller than 480px; (iPhone) */
+}
+
+/* different techniques for iPad screening */
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
+    /* For portrait layouts only */
+}

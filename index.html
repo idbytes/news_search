@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./src/resources/css/style.css" type="text/css" >
+    <script src="./src/resources/js/index.js"></script>
+    <title>News Search</title>
+</head>
+<body>
+    <div class="main-div">
+        <h1>Latest News Search</h1>
+        <div class="container-div">
+            <div class="timer">Auto refresh in <span id="counter">30</span> seconds</div>
+            <div>
+                <form>
+                <input type="text" class="input-search" id="newsSearch" name="newsSearch"/>
+                <input type="button" value="Search" onclick="getNews(newsSearch,1)"/>
+                </form>
+            </div>
+            <div>
+                <div class="news-card" id="news">
+        
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
