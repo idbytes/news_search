@@ -1,10 +1,9 @@
 let timeLeft = 30; 
 let counterElement;
-let newsElement;
+let newsElement = document.getElementById("news");;
 let queryParam;
-let pageNumber;
+let pageNumber=1;
 let searchBar;
-let pageSize;
 
 let timerId = setInterval(countdown, 1000);
 
@@ -30,12 +29,12 @@ window.onload = function(){
     }
     searchBar = this.document.getElementById('newsSearch');
     searchBar.value = queryParam;
-    this.getNews(queryParam,1);
+    this.getNews(queryParam,pageNumber);
 }
 
 // It hits the api and get the list of news based on query parameter passed
 
-function getNews(searchText = "", pageNumber = 0) {
+function getNews(searchText, pageNumber) {
     let xmlhttp = new XMLHttpRequest();
     const api_url = "https://newsapi.org/v2/everything?q=";
     const apiKey = "e989f78cdb494492bca304f1f7579827";
@@ -46,7 +45,6 @@ function getNews(searchText = "", pageNumber = 0) {
             displayNews(JSON.parse(this.responseText));
         }
         else{
-            newsElement = document.getElementById("news");
             newsElement.innerHTML = "No related news found";
         }
     };
@@ -55,10 +53,12 @@ function getNews(searchText = "", pageNumber = 0) {
     xmlhttp.send();
 }
 
+
+
+
 // It gets the response as parameter and display the news in UI
 
 function displayNews(news){
-    newsElement = document.getElementById("news");
     let newsDiv = document.createElement('div');
     newsDiv.className = "newsDiv";
     newsDiv.id = "news-list";
@@ -68,9 +68,6 @@ function displayNews(news){
     let titleDiv;
     let contentDiv;
     let newsImg;
-    let listElem;
-    
-    pageNumber = 1;
     news.articles.map(data => {
         newsImg = document.createElement("img");
         newsImg.setAttribute("height", "50");
@@ -88,15 +85,12 @@ function displayNews(news){
         newsElement.appendChild(newsDiv).appendChild(containerDiv).appendChild(subContainerDiv).appendChild(titleDiv).innerHTML = ""+data.title;
         newsElement.appendChild(newsDiv).appendChild(containerDiv).appendChild(subContainerDiv).appendChild(contentDiv).innerHTML = ""+data.content;
     });
+}
 
 // Detect when news list is scrolled
-
-    listElem = document.getElementById('news-list');
-    listElem.addEventListener('scroll', function() {
-        if (listElem.scrollTop + listElem.clientHeight >= listElem.scrollHeight) {
+newsElement.addEventListener('scroll', function() {
+        if (newsElement.scrollTop + newsElement.clientHeight >= newsElement.scrollHeight) {
            pageNumber++;
            getNews(queryParam,pageNumber);
         }
       });
-    
-}
