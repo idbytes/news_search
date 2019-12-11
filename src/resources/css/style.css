@@ -34,15 +34,26 @@ input[type=button]{
 input[type=button]:active {
     border-style: outset;
 }
+.newsDiv{
+    border: solid 1px #262626;
+    overflow: auto;
+    max-height: 450px;
+    overflow-y: scroll;
+    margin-top: 30px;
+    padding: 20px;
+}
 @media only screen and (min-width: 960px) {
     /* styles for browsers larger than 960px; */
+    /* TBD */
 }
 
 @media only screen and (max-device-width: 480px) {
     /* styles for mobile browsers smaller than 480px; (iPhone) */
+    /* TBD */
 }
 
 /* different techniques for iPad screening */
 @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
     /* For portrait layouts only */
+    /* TBD */
 }
