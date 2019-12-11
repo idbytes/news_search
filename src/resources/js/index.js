@@ -1,6 +1,6 @@
 let timeLeft = 30; 
 let counterElement;
-let newsElement = document.getElementById("news");;
+let newsCardsDiv = document.getElementById("news-cards");
 let queryParam;
 let pageNumber=1;
 let searchBar;
@@ -39,13 +39,15 @@ function getNews(searchText, pageNumber) {
     const api_url = "https://newsapi.org/v2/everything?q=";
     const apiKey = "e989f78cdb494492bca304f1f7579827";
     xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            newsElement = document.getElementById("news");
-            newsElement.innerHTML = "";
+        if (this.status == 200) {
+            newsCardsDiv.innerHTML = "";
             displayNews(JSON.parse(this.responseText));
         }
         else{
-            newsElement.innerHTML = "No related news found";
+            if(this.readyState == 4 && this.status>300)
+            {
+                newsCardsDiv.innerHTML = "No related news found";
+            }
         }
     };
 
@@ -53,43 +55,39 @@ function getNews(searchText, pageNumber) {
     xmlhttp.send();
 }
 
-
-
-
 // It gets the response as parameter and display the news in UI
 
 function displayNews(news){
-    let newsDiv = document.createElement('div');
-    newsDiv.className = "newsDiv";
-    newsDiv.id = "news-list";
-    let containerDiv;
-    let imgDiv;
-    let subContainerDiv;
-    let titleDiv;
-    let contentDiv;
-    let newsImg;
+    
     news.articles.map(data => {
-        newsImg = document.createElement("img");
+        let newsCardDiv = document.createElement('div');
+        let newsDiv = document.createElement('div');
+        let containerDiv = document.createElement('div'); 
+        let imgDiv = document.createElement('div');
+        let subContainerDiv = document.createElement('div');
+        let titleDiv = document.createElement('div');
+        let contentDiv = document.createElement('div');
+        let newsImg = document.createElement("img");
+        
+        newsDiv.className = "newsDiv";
+        newsDiv.id = "news-list";
         newsImg.setAttribute("height", "50");
         newsImg.setAttribute("width", "50");
-        containerDiv = document.createElement('div'); 
         containerDiv.className = "news-container";
-        imgDiv = document.createElement('div');
         imgDiv.className = "img-container";
-        subContainerDiv = document.createElement('div');
         subContainerDiv.className = "sub-container";
-        titleDiv = document.createElement('div');
         titleDiv.className = "title-div";
-        contentDiv = document.createElement('div');
-        newsElement.appendChild(newsDiv).appendChild(containerDiv).appendChild(imgDiv).appendChild(newsImg).setAttribute("src",data.urlToImage);
-        newsElement.appendChild(newsDiv).appendChild(containerDiv).appendChild(subContainerDiv).appendChild(titleDiv).innerHTML = ""+data.title;
-        newsElement.appendChild(newsDiv).appendChild(containerDiv).appendChild(subContainerDiv).appendChild(contentDiv).innerHTML = ""+data.content;
+        
+        newsCardDiv.appendChild(newsDiv).appendChild(containerDiv).appendChild(imgDiv).appendChild(newsImg).setAttribute("src",data.urlToImage);
+        newsCardDiv.appendChild(newsDiv).appendChild(containerDiv).appendChild(subContainerDiv).appendChild(titleDiv).innerHTML = ""+data.title;
+        newsCardDiv.appendChild(newsDiv).appendChild(containerDiv).appendChild(subContainerDiv).appendChild(contentDiv).innerHTML = ""+data.content;
+        newsCardsDiv.appendChild(newsCardDiv);
     });
 }
 
 // Detect when news list is scrolled
-newsElement.addEventListener('scroll', function() {
-        if (newsElement.scrollTop + newsElement.clientHeight >= newsElement.scrollHeight) {
+newsCardsDiv.addEventListener('scroll', function() {
+        if (newsCardsDiv.scrollTop + newsCardsDiv.clientHeight >= newsCardsDiv.scrollHeight-10) {
            pageNumber++;
            getNews(queryParam,pageNumber);
         }

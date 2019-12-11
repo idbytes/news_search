@@ -17,25 +17,32 @@ h1{
 .timer{
     text-align: right;
 }
+.searchContainer{
+    width: 100%;
+}
 input[type=text]{
-    width: 94%;
+    width: 97%;
     height: 35px;
     display: inline-block;
     border: 1px solid #a3c2c2;
     box-sizing: border-box;
 }
-input[type=button]{
-    width: 5.5%;
+input[type=text]:focus{
+    border: 1px solid #33cc33;
+}
+.searchBtn{
+    width: 2.5%;
     height: 35px;
-    background-color: #59C03C;
+    background-color: #33cc33;
+    color: #ffffff;
     outline: none;
     cursor: pointer;
 }
 input[type=button]:active {
     border-style: outset;
 }
-.news-card{
-    border: solid 1px #262626;
+.news-cards{
+    border: solid 1px #a3c2c2;
     overflow: auto;
     max-height: 450px;
     overflow-x: none;
@@ -59,18 +66,19 @@ input[type=button]:active {
  font-weight: bold;
 }
 
-@media only screen and (min-width: 960px) {
+@media screen and (min-width: 960px) {
     /* styles for browsers larger than 960px; */
     /* TBD */
 }
 
-@media only screen and (max-device-width: 480px) {
+@media screen and (max-device-width: 480px) {
     /* styles for mobile browsers smaller than 480px; (iPhone) */
-    /* TBD */
+    input[type=text]{width: 90.5%}
+    .searchBtn{ width: 9%;}
 }
 
 /* different techniques for iPad screening */
-@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
-    /* For portrait layouts only */
-    /* TBD */
+@media screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
+    input[type=text]{width: 94.5%}
+    .searchBtn{ width: 5%;}
 }
