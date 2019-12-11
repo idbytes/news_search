@@ -42,6 +42,22 @@ input[type=button]:active {
     margin-top: 30px;
     padding: 20px;
 }
+.news-container{
+    background-color: #ccffcc;
+    padding: 5px;
+    margin-top: 5px;
+}
+.img-container{
+    float: left;
+}
+.sub-container{
+    margin-left: 60px;
+    min-height: 60px;
+}
+.title-div{
+ font-weight: bold;
+}
+
 @media only screen and (min-width: 960px) {
     /* styles for browsers larger than 960px; */
     /* TBD */
