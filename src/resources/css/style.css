@@ -96,22 +96,27 @@ input[type=button]:active {
     overflow-wrap: break-word;
     word-wrap: break-word;
 }
-
-@media only screen and (min-width: 960px) {
+.column {
+    float: left;
+    width: 100%;
+}
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+@media only screen and (min-width: 961px) {
     /* styles for browsers larger than 960px; */
 
 }
 
 @media only screen and (max-device-width: 480px) {
     /* styles for mobile browsers smaller than 480px; (iPhone) */
-    .content-div {
-        font-weight: bold;
-    }
 }
 
 /* different techniques for iPad screening */
-@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
-    .content-div {
-        font-weight: bold;
+@media only screen and (min-device-width: 481px) and (max-device-width: 960px) and (orientation:portrait) {
+    .column {
+        width: 50%;
     }
 }

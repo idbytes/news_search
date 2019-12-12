@@ -1,4 +1,4 @@
-let timeLeft = 30;
+let timeLeft = 3000;
 let counterElement;
 let newsCardsDiv = document.getElementById("news-cards");
 let mainDiv = document.getElementById("main-div");
@@ -19,7 +19,7 @@ function refreshPage() {
         this.getNews(queryParam, 1);
         pageNumber=1;
         isSearchEnd=false;
-        timeLeft = 30;
+        timeLeft = 3000;
     } else {
         counterElement.innerHTML = timeLeft;
         timeLeft--;
@@ -85,6 +85,7 @@ function displayNews(news) {
 
         newsDiv.className = "newsDiv";
         newsDiv.id = "news-list";
+        newsCardDiv.className = "column";
         newsImg.setAttribute("height", "50");
         newsImg.setAttribute("width", "50");
         containerDiv.className = "news-container";
