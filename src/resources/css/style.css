@@ -93,6 +93,8 @@ input[type=button]:active {
 }
 .content-div{
     font-style: italic;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 @media only screen and (min-width: 960px) {
