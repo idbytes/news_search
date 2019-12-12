@@ -1,4 +1,4 @@
-let timeLeft = 300;
+let timeLeft = 30;
 let counterElement;
 let newsCardsDiv = document.getElementById("news-cards");
 let mainDiv = document.getElementById("main-div");
@@ -19,7 +19,7 @@ function refreshPage() {
         this.getNews(queryParam, 1);
         pageNumber=1;
         isSearchEnd=false;
-        timeLeft = 300;
+        timeLeft = 30;
     } else {
         counterElement.innerHTML = timeLeft;
         timeLeft--;
