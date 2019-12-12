@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" http-equiv="Refresh" content="30">
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="./src/resources/css/style.css" type="text/css" >
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script defer src="./src/resources/js/index.js"></script>
@@ -15,15 +15,17 @@
             <div>
                 <form>
                     <div class="searchContainer">
-                    <input type="text" class="input-search" id="newsSearch" name="newsSearch"/>
-                    <button class="searchBtn" onclick="getNews(newsSearch.value,1)"><i class="fa fa-search"></i></button>
+                    <input type="text" class="input-search" id="query" name="query"/>
+                    <button class="searchBtn" onclick="getNews(query.value,1)"><i class="fa fa-search"></i></button>
                     </div>
                 </form>
             </div>
             <div>
-                <div class="news-cards" id="news-cards">
-                    
+                <div class="news-cards-errors" id="news-cards-errors">
                 </div>
+                <div class="news-cards" id="news-cards">
+                </div>
+
             </div>
         </div>
     </div>
