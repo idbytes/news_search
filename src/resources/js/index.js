@@ -1,4 +1,4 @@
-let timeLeft = 30;
+let timeLeft = 3000;
 let counterElement;
 let newsCardsDiv = document.getElementById("news-cards");
 let mainDiv = document.getElementById("main-div");
@@ -19,7 +19,7 @@ function refreshPage() {
         this.getNews(queryParam, 1);
         pageNumber=1;
         isSearchEnd=false;
-        timeLeft = 30;
+        timeLeft = 3000;
     } else {
         counterElement.innerHTML = timeLeft;
         timeLeft--;
@@ -89,6 +89,7 @@ function displayNews(news) {
         newsImg.setAttribute("height", "50");
         newsImg.setAttribute("width", "50");
         containerDiv.className = "news-container";
+        containerDiv.id = "newsId";
         imgDiv.className = "img-container";
         subContainerDiv.className = "sub-container";
         titleDiv.className = "title-div";
@@ -98,6 +99,12 @@ function displayNews(news) {
         newsCardDiv.appendChild(newsDiv).appendChild(containerDiv).appendChild(subContainerDiv).appendChild(titleDiv).innerHTML = "" + data.title;
         newsCardDiv.appendChild(newsDiv).appendChild(containerDiv).appendChild(subContainerDiv).appendChild(contentDiv).innerHTML = "" + data.content;
         newsCardsDiv.appendChild(newsCardDiv);
+
+        // To show the news actual source
+        containerDiv.onclick = function(){
+            window.location.href = data.url;
+        }
+
     });
 }
 

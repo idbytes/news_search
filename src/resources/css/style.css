@@ -24,12 +24,9 @@ h1{
 }
 .searchContainer{
     width: 100%;
-    /* margin: 0 0 0 20px; */
 }
 input[type=text]{
     height: 35px;
-    /* margin: 0 0 0 20px; */
-    /* display: inline-block; */
     border: 1px solid #a3c2c2;
     box-sizing: border-box;
     padding-left: 8px;
@@ -43,11 +40,8 @@ input[type=text]:focus{
 .searchBtn{
     min-width: 40px;
     height: 35px;
-    /* background-color: #33cc33; */
-    /* color: #050505; */
     outline: none;
     cursor: pointer;
-    /* float: right; */
     border: solid 1px #e7e7e7;
     border-radius: 5px;
 }
@@ -55,30 +49,22 @@ input[type=button]:active {
     border-style: outset;
 }
 .news-cards{
-    /* display: none; */
-    /* border: solid 1px #a3c2c2; */
-    /* overflow: auto; */
-    /*max-height: 450px;*/
-    /* overflow-y: scroll; */
     margin-top: 30px;
-    /* padding: 20px; */
-    /* background: scroll; */
-    /* width: 300px; */
 }
-
 .news-cards-errors{
     margin-top: 5px;
     color: #ff3333;
 }
-
 .news-container{
     background-color: #fbfbfb;
     padding: 5px;
     margin-top: 5px;
     width: inherit;
+    height: 70px;
     font-family: auto;
     border: solid 1px #e7f7ff;
     box-shadow: 0 5px 5px rgba(136,136,136,.8);
+    cursor: pointer;
 }
 .img-container{
     float: left;
@@ -92,9 +78,14 @@ input[type=button]:active {
     font-weight: bold;
 }
 .content-div{
+    /* height: auto; */
+    height: 50px;
     font-style: italic;
     overflow-wrap: break-word;
     word-wrap: break-word;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 .column {
     float: left;
