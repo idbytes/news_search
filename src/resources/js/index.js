@@ -1,7 +1,8 @@
-let timeLeft = 3000;
+let timeLeft = 30;
 let counterElement;
 let newsCardsDiv = document.getElementById("news-cards");
 let mainDiv = document.getElementById("main-div");
+let loaderDiv = document.getElementById("loader");
 let newsCardsErrorsDiv = document.getElementById("news-cards-errors");
 let queryParam;
 let pageNumber = 1;
@@ -19,7 +20,7 @@ function refreshPage() {
         this.getNews(queryParam, 1);
         pageNumber=1;
         isSearchEnd=false;
-        timeLeft = 3000;
+        timeLeft = 30;
     } else {
         counterElement.innerHTML = timeLeft;
         timeLeft--;
@@ -39,6 +40,7 @@ window.onload = function () {
 // It hits the api and get the list of news based on query parameter passed
 function getNews(searchText, pageNumber) {
     isLoading=true;
+    loaderDiv.style.display= "block";
     let xmlhttp = new XMLHttpRequest();
     const api_url = "https://newsapi.org/v2/everything?q=";
     const apiKey = "ba0ccdce341c4e77a1127c92efae8908";
@@ -51,6 +53,7 @@ function getNews(searchText, pageNumber) {
                     newsCardsErrorsDiv.innerHTML = "No related news found";
                 } else if (jsonResp.totalResults > 0) {
                     newsCardsErrorsDiv.innerHTML = "";
+                    loaderDiv.style.display= "none";
                     newsCardsDiv.style.display = "block";
                     displayNews(JSON.parse(this.responseText));
                     if(jsonResp.totalResults < 10){
@@ -86,8 +89,8 @@ function displayNews(news) {
         newsDiv.className = "newsDiv";
         newsDiv.id = "news-list";
         newsCardDiv.className = "column";
-        newsImg.setAttribute("height", "50");
-        newsImg.setAttribute("width", "50");
+        newsImg.setAttribute("height", "60");
+        newsImg.setAttribute("width", "60");
         containerDiv.className = "news-container";
         containerDiv.id = "newsId";
         imgDiv.className = "img-container";
@@ -95,9 +98,13 @@ function displayNews(news) {
         titleDiv.className = "title-div";
         contentDiv.className = "content-div";
 
-        newsCardDiv.appendChild(newsDiv).appendChild(containerDiv).appendChild(imgDiv).appendChild(newsImg).setAttribute("src", data.urlToImage);
-        newsCardDiv.appendChild(newsDiv).appendChild(containerDiv).appendChild(subContainerDiv).appendChild(titleDiv).innerHTML = "" + data.title;
-        newsCardDiv.appendChild(newsDiv).appendChild(containerDiv).appendChild(subContainerDiv).appendChild(contentDiv).innerHTML = "" + data.content;
+        
+        data.urlToImage ? (newsCardDiv.appendChild(newsDiv).appendChild(containerDiv).appendChild(imgDiv).appendChild(newsImg).setAttribute("src", data.urlToImage))
+         :(newsCardDiv.appendChild(newsDiv).appendChild(containerDiv).appendChild(imgDiv).appendChild(newsImg).setAttribute("src", "src/resources/images/news-default.png"));
+        data.title ? (newsCardDiv.appendChild(newsDiv).appendChild(containerDiv).appendChild(subContainerDiv).appendChild(titleDiv).innerHTML = "" + data.title)
+        :(newsCardDiv.appendChild(newsDiv).appendChild(containerDiv).appendChild(subContainerDiv).appendChild(titleDiv).innerHTML = "Default title");
+        data.content ? (newsCardDiv.appendChild(newsDiv).appendChild(containerDiv).appendChild(subContainerDiv).appendChild(contentDiv).innerHTML = "" + data.content) 
+        :(newsCardDiv.appendChild(newsDiv).appendChild(containerDiv).appendChild(subContainerDiv).appendChild(contentDiv).innerHTML = "No news details to show");
         newsCardsDiv.appendChild(newsCardDiv);
 
         // To show the news actual source
