@@ -62,8 +62,10 @@ function getNews(searchText, pageNumber) {
                 }
             } else if (this.status === 426 || this.status === 429) {
                 isSearchEnd = true;
-                newsCardsErrorsDiv.innerHTML = "Max reached";
+                loaderDiv.style.display= "none";
+                // newsCardsErrorsDiv.innerHTML = "Max reached";
             } else if (this.status > 426) {
+                loaderDiv.style.display= "none";
                 newsCardsErrorsDiv.innerHTML = "Something broke";
             }
         }
